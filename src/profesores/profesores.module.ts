@@ -3,6 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ProfesoresController } from './profesores.controller';
 import { ProfesoresService } from './profesores.service';
 import { ProfesorSchema } from './schemas/profesor.schema';
+import { ValidacionesService } from './validaciones/validaciones.service';
 
 @Module({
     imports: [
@@ -11,6 +12,6 @@ import { ProfesorSchema } from './schemas/profesor.schema';
         ])
     ],
     controllers: [ProfesoresController],
-    providers: [ProfesoresService]
+    providers: [ProfesoresService, ValidacionesService]
 })
 export class ProfesoresModule {}

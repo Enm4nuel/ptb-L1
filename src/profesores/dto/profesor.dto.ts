@@ -1,7 +1,14 @@
 export class ProfesorDto {
     nombre: string;
-    apellido: string;
     sexo: string;
+    edad: number;
     activo: boolean;
+    turnos: [
+        aula: [
+            codigo: string,
+            materia: string
+        ]
+    ];
     createdAt: Date;
+    eliminatedAt: Date;
 }

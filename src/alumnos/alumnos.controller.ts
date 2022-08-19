@@ -28,6 +28,13 @@ export class AlumnosController {
         return res.status(HttpStatus.OK).json(alumno);
     }
 
+    @Get(':alumnoName')
+    async readAlumnoName(@Res() res, @Param('alumnoName') alumnoName) {
+        const alumno = await this.alumnoService.readAlumnoName(alumnoName);
+        if (!alumnoName) throw new NotFoundException('El alumno no existe');
+        return res.status(HttpStatus.OK).json(alumno);
+    }
+
     @Delete('delete/:alumnoID')
     async deleteAlumno(@Res() res, @Param('alumnoID') alumnoID) {
         const alumno = await this.alumnoService.deleteAlumnos(alumnoID);

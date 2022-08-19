@@ -4,13 +4,16 @@ import { ProfesorDto } from './dto/profesor.dto';
 
 import { ProfesoresService } from './profesores.service';
 
+import { ValidacionesService } from './validaciones/validaciones.service';
+
 @Controller('profesores')
 export class ProfesoresController {
 
-    constructor(private profesoresService: ProfesoresService) {}
+    constructor(private profesoresService: ProfesoresService, private validacionesService: ValidacionesService) {}
 
     @Post('create')
     async createProfesor(@Res() res, @Body() profesorDto: ProfesorDto) {
+        this.validacionesService.p1(profesorDto);
         const profesor = await this.profesoresService.createProfesor(profesorDto);
         return res.status(HttpStatus.OK).json(profesor);
     }
