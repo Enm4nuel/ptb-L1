@@ -16,6 +16,7 @@ import { TurnosModule } from './turnos/turnos.module';
     TurnosModule,
   ],
   controllers: [AppController],
+  providers: [AppService]
 
 })
 export class AppModule {}

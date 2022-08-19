@@ -1,9 +1,11 @@
 import { Controller, Post, Get, Delete, Res, HttpStatus, Body, Param, NotFoundException, Put } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
 import { TurnoDto } from './dto/turno.dto';
 
 import { TurnosService } from './turnos.service';
 
+@ApiTags('Turnos')
 @Controller('turnos')
 export class TurnosController {
 

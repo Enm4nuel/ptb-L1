@@ -3,13 +3,20 @@ import { Controller, Post, Get, Delete, Res, HttpStatus, Body, Param, NotFoundEx
 import { AlumnosDto } from './dto/alumno.dto';
 
 import { AlumnoService } from './alumnos.service';
+import { ApiBody, ApiCreatedResponse, ApiInternalServerErrorResponse, ApiOkResponse, ApiParam, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Alumnos')
 @Controller('alumnos')
 export class AlumnosController {
 
     constructor(private alumnoService: AlumnoService) {}
 
     @Post('create')
+    @ApiBody({type: AlumnosDto})
+    @ApiCreatedResponse({description: 'Agregar Alumno'})
+    @ApiOkResponse({description: "Alumno creado correctamente"})
+    @ApiInternalServerErrorResponse({description: 'Ha ocurrido un problema interno con el servidor'})
+    
     async createAlumno(@Res() res, @Body() alumnosDto: AlumnosDto) {
         try {
             const alumno = await this.alumnoService.createAlumnos(alumnosDto);
@@ -27,6 +34,10 @@ export class AlumnosController {
     }
 
     @Get('')
+    @ApiBody({type: AlumnosDto})
+    @ApiOkResponse({description: 'Obtener Alumnos'})
+    @ApiInternalServerErrorResponse({description: 'Ha ocurrido un problema interno con el servidor'})
+
     async readAlumnos(@Res() res) {
         try {
             const alumno = await this.alumnoService.readAlumnos();
@@ -44,6 +55,11 @@ export class AlumnosController {
     }
 
     @Get(':alumnoID')
+    @ApiBody({type: AlumnosDto})
+    @ApiParam({type: 'string', name: 'alumnoID', description: "ID del alumno que se quiere encontrar"})
+    @ApiOkResponse({description: 'Obtener un Alumno especifico'})
+    @ApiInternalServerErrorResponse({description: 'Ha ocurrido un problema interno con el servidor'})
+
     async readAlumnoID(@Res() res, @Param('alumnoID') alumnoID) {
         try {
             const alumno = await this.alumnoService.readAlumnoID(alumnoID);
@@ -61,6 +77,11 @@ export class AlumnosController {
     }
 
     @Delete('delete/:alumnoID')
+    @ApiBody({type: AlumnosDto})
+    @ApiParam({type: 'string', name: 'alumnoID', description: "ID del alumno que se quiere eliminar"})
+    @ApiOkResponse({description: 'Alumno eliminado'})
+    @ApiInternalServerErrorResponse({description: 'Ha ocurrido un problema interno con el servidor'})
+
     async deleteAlumno(@Res() res, @Param('alumnoID') alumnoID) {
         try {
             const alumno = await this.alumnoService.deleteAlumnos(alumnoID);
@@ -78,6 +99,11 @@ export class AlumnosController {
     }
 
     @Put('update/:alumnoID')
+    @ApiBody({type: AlumnosDto})
+    @ApiParam({type: 'string', name: 'alumnoID', description: "ID del alumno que se quiere modificar"})
+    @ApiOkResponse({description: 'Alumno modificado'})
+    @ApiInternalServerErrorResponse({description: 'Ha ocurrido un problema interno con el servidor'})
+
     async updateAlumnos(@Res() res, @Param('alumnoID') alumnoID, @Body() alumnosDto: AlumnosDto) {
         try {
             const alumno = await this.alumnoService.updateAlumnos(alumnoID, alumnosDto);
