@@ -11,44 +11,87 @@ export class AlumnosController {
 
     @Post('create')
     async createAlumno(@Res() res, @Body() alumnosDto: AlumnosDto) {
-        const alumno = await this.alumnoService.createAlumnos(alumnosDto);
-        return res.status(HttpStatus.OK).json(alumno);
+        try {
+            const alumno = await this.alumnoService.createAlumnos(alumnosDto);
+            return res.status(HttpStatus.OK).json(alumno);
+        }
+        catch (error) {
+            var msg = `
+            "Ha habido un problema"
+            -------------------------
+            Descripcion del problema:
+            
+            ${error}`;
+            return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
+        }
     }
 
     @Get('')
     async readAlumnos(@Res() res) {
-        const alumno = await this.alumnoService.readAlumnos();
-        return res.status(HttpStatus.OK).json(alumno);
+        try {
+            const alumno = await this.alumnoService.readAlumnos();
+            return res.status(HttpStatus.OK).json(alumno);
+        }
+        catch (error) {
+            var msg = `
+            "Ha habido un problema"
+            -------------------------
+            Descripcion del problema:
+            
+            ${error}`;
+            return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
+        }
     }
 
     @Get(':alumnoID')
     async readAlumnoID(@Res() res, @Param('alumnoID') alumnoID) {
-        const alumno = await this.alumnoService.readAlumnoID(alumnoID);
-        if (!alumnoID) throw new NotFoundException('El alumno no existe');
-        return res.status(HttpStatus.OK).json(alumno);
-    }
-
-    @Get(':alumnoName')
-    async readAlumnoName(@Res() res, @Param('alumnoName') alumnoName) {
-        const alumno = await this.alumnoService.readAlumnoName(alumnoName);
-        if (!alumnoName) throw new NotFoundException('El alumno no existe');
-        return res.status(HttpStatus.OK).json(alumno);
+        try {
+            const alumno = await this.alumnoService.readAlumnoID(alumnoID);
+            return res.status(HttpStatus.OK).json(alumno);
+        }
+        catch (error) {
+            var msg = `
+            "El alumno no existe"
+            -------------------------
+            Descripcion del problema:
+            
+            ${error}`;
+            return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
+        }
     }
 
     @Delete('delete/:alumnoID')
     async deleteAlumno(@Res() res, @Param('alumnoID') alumnoID) {
-        const alumno = await this.alumnoService.deleteAlumnos(alumnoID);
-        if (!alumnoID) throw new NotFoundException('El alumno no existe');
-        return res.status(HttpStatus.OK).json(alumno);
+        try {
+            const alumno = await this.alumnoService.deleteAlumnos(alumnoID);
+            return res.status(HttpStatus.OK).json(alumno);
+        }
+        catch (error) {
+            var msg = `
+            "El alumno no existe"
+            -------------------------
+            Descripcion del problema:
+            
+            ${error}`;
+            return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
+        }
     }
 
     @Put('update/:alumnoID')
     async updateAlumnos(@Res() res, @Param('alumnoID') alumnoID, @Body() alumnosDto: AlumnosDto) {
-        const alumno = await this.alumnoService.updateAlumnos(alumnoID, alumnosDto);
-        if (!alumnoID) throw new NotFoundException('El alumno no existe');
-        return res.status(HttpStatus.OK).json({
-            alumno
-        });
+        try {
+            const alumno = await this.alumnoService.updateAlumnos(alumnoID, alumnosDto);
+            return res.status(HttpStatus.OK).json(alumno);
+        }
+        catch (error) {
+            var msg = `
+            "El alumno no existe"
+            -------------------------
+            Descripcion del problema:
+            
+            ${error}`;
+            return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
+        }
     }
 
 

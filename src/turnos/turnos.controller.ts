@@ -11,39 +11,87 @@ export class TurnosController {
 
     @Post('create')
     async createTurno(@Res() res, @Body() turnoDto: TurnoDto) {
-        const turno = await this.turnosService.createTurno(turnoDto);
-        if (!turno) throw new NotFoundException('Un solo docente por turno');
-        return res.status(HttpStatus.OK).json(turno);
+        try {
+            const turno = await this.turnosService.createTurno(turnoDto);
+            return res.status(HttpStatus.OK).json(turno);
+        }
+        catch (error) {
+            var msg = `
+            "Ha habido un problema"
+            -------------------------
+            Descripcion del problema:
+            
+            ${error}`;
+            return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
+        }
     }
 
     @Get('')
     async readTurnos(@Res() res) {
-        const turnos = await this.turnosService.readTurnos();
-        console.log("Todos los turnos");
-        return res.status(HttpStatus.OK).json(turnos);
+        try {
+            const turnos = await this.turnosService.readTurnos();
+            return res.status(HttpStatus.OK).json(turnos);
+        }
+        catch (error) {
+            var msg = `
+            "Ha habido un problema"
+            -------------------------
+            Descripcion del problema:
+            
+            ${error}`;
+            return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
+        }
     }
 
     @Get(':turnoID')
     async readTurnoID(@Res() res, @Param('turnoID') turnoID) {
-        const turno = await this.turnosService.readTurnoID(turnoID);
-        if (!turno) throw new NotFoundException('El turno no existe');
-        return res.status(HttpStatus.OK).json(turno);
+        try {
+            const turno = await this.turnosService.readTurnoID(turnoID);
+            return res.status(HttpStatus.OK).json(turno);
+        }
+        catch (error) {
+            var msg = `
+            "El turno no existe"
+            -------------------------
+            Descripcion del problema:
+            
+            ${error}`;
+            return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
+        }
     }
 
     @Delete('delete/:turnoID')
     async deleteTurno(@Res() res, @Param('turnoID') turnoID) {
-        const turno = await this.turnosService.deleteTurno(turnoID);
-        if (!turnoID) throw new NotFoundException('El turno no existe');
-        return res.status(HttpStatus.OK).json(turno);
+        try {
+            const turno = await this.turnosService.deleteTurno(turnoID);
+            return res.status(HttpStatus.OK).json(turno);
+        }
+        catch (error) {
+            var msg = `
+            "El turno no existe"
+            -------------------------
+            Descripcion del problema:
+            
+            ${error}`;
+            return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
+        }
     }
 
     @Put('update/:turnoID')
     async updateTurno(@Res() res, @Param('turnoID') turnoID, @Body() turnoDto: TurnoDto) {
-        const turno = await this.turnosService.updateTurno(turnoID, turnoDto);
-        if (!turnoID) throw new NotFoundException('El turno no existe');
-        return res.status(HttpStatus.OK).json({
-            turno
-        });
+        try {
+            const turno = await this.turnosService.updateTurno(turnoID, turnoDto);
+            return res.status(HttpStatus.OK).json({turno});
+        }
+        catch (error) {
+            var msg = `
+            "El turno no existe"
+            -------------------------
+            Descripcion del problema:
+            
+            ${error}`;
+            return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
+        }
     }
 
 }

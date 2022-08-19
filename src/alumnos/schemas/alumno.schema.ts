@@ -19,6 +19,7 @@ export const AlumnoSchema = new Schema ({
     matricula: {
         type: String,
         unique: true,
+        message: 'Este estudiante esta matriculado',
         default: function() { 
             return generateUUID();
         }

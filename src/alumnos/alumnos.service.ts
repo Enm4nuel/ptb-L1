@@ -4,7 +4,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Alumnos } from './interfaces/alumno.interface';
 import { AlumnosDto } from './dto/alumno.dto'; 
 
-
 @Injectable()
 export class AlumnoService {
 
@@ -19,12 +18,6 @@ export class AlumnoService {
     // Obtener un solo alumno por ID
     async readAlumnoID(alumnoID: string): Promise<Alumnos> {
         const alumno = await this.alumnoModel.findById(alumnoID);
-        return alumno;
-    }
-
-    // Obtener un solo alumno por nombre
-    async readAlumnoName(alumnoName: string): Promise<Alumnos> {
-        const alumno = await this.alumnoModel.findOne({ nombre: alumnoName});
         return alumno;
     }
 
