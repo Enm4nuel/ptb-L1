@@ -24,22 +24,22 @@ export const ProfesorSchema = new Schema ({
         }
     },
     createdAt: {
-        type: Date,
+        type: String,
         validate: {
             validator: function() {
               if (this.activo == true) {
-                return Date.now
+                return obtenerFecha()
               }
             }
           },
-        default: Date.now
+        default: obtenerFecha()
     },
     eliminatedAt: {
-        type: Date,
+        type: String,
         validate: {
             validator: function() {
                 if (this.activo == false){
-                    return Date.now;
+                    return obtenerFecha();
                 }
                 else {
                     return "Aun activo";
@@ -48,3 +48,20 @@ export const ProfesorSchema = new Schema ({
         },
     }
 })
+
+function obtenerFecha() {
+    const today = new Date();
+    const yy = today.getFullYear();
+    let mm = today.getMonth() + 1;
+    let dd = today.getDate()
+
+    if (dd < 10) {
+        dd = 0 + dd;
+    }
+
+    if (mm < 10) {
+        mm = 0 + mm;
+    }
+
+    return dd + '/' + mm + '/' + yy;
+}

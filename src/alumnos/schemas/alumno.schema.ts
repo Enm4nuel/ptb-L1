@@ -25,8 +25,8 @@ export const AlumnoSchema = new Schema ({
         }
     },
     createdAt: {
-        type: Date,
-        default: Date.now()
+        type: String,
+        default: obtenerFecha()
     }
 })
 
@@ -38,4 +38,21 @@ function generateUUID() {
         return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
     return uuid;
+}
+
+function obtenerFecha() {
+    const today = new Date();
+    const yy = today.getFullYear();
+    let mm = today.getMonth() + 1;
+    let dd = today.getDate()
+
+    if (dd < 10) {
+        dd = 0 + dd;
+    }
+
+    if (mm < 10) {
+        mm = 0 + mm;
+    }
+
+    return dd + '/' + mm + '/' + yy;
 }
