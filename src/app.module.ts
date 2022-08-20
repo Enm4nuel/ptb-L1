@@ -10,13 +10,14 @@ import { TurnosModule } from './turnos/turnos.module';
 @Module({
   imports: [
     AlumnosModule,
-    MongooseModule.forRoot('mongodb+srv://enmanuel:enmanuel@politecnico.4e1mdkm.mongodb.net/politecnico?retryWrites=true&w=majority'),  
+    MongooseModule.forRoot(
+      'mongodb+srv://enmanuel:enmanuel@politecnico.4e1mdkm.mongodb.net/politecnico?retryWrites=true&w=majority',
+    ),
     AulasModule,
     ProfesoresModule,
     TurnosModule,
   ],
   controllers: [AppController],
-  providers: [AppService]
-
+  providers: [AppService],
 })
 export class AppModule {}

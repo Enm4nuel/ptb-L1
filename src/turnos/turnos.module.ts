@@ -5,13 +5,10 @@ import { TurnosController } from './turnos.controller';
 import { TurnosService } from './turnos.service';
 
 @Module({
-    imports: [
-        MongooseModule.forFeature([
-            {name: 'Turnos', schema: TurnoSchema}
-        ])
-    ],
-    controllers: [TurnosController],
-    providers: [TurnosService]
-
+  imports: [
+    MongooseModule.forFeature([{ name: 'Turnos', schema: TurnoSchema }]),
+  ],
+  controllers: [TurnosController],
+  providers: [TurnosService],
 })
 export class TurnosModule {}
