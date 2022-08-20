@@ -11,7 +11,7 @@ export class TurnosController {
 
     constructor(private turnosService: TurnosService) {}
 
-    @Post('create')
+    @Post('')
     @ApiBody({type: TurnoDto})
     @ApiCreatedResponse({description: 'Agregar Turno'})
     @ApiOkResponse({description: "Turno creado correctamente"})
@@ -76,7 +76,7 @@ export class TurnosController {
         }
     }
 
-    @Delete('delete/:turnoID')
+    @Delete(':turnoID')
     @ApiBody({type: TurnoDto})
     @ApiParam({type: 'string', name: 'turnoID', description: "ID del turno que se quiere eliminar"})
     @ApiOkResponse({description: 'Turno eliminado'})
@@ -98,7 +98,7 @@ export class TurnosController {
         }
     }
 
-    @Put('update/:turnoID')
+    @Put(':turnoID')
     @ApiBody({type: TurnoDto})
     @ApiParam({type: 'string', name: 'turnoID', description: "ID del turno que se quiere modificar"})
     @ApiOkResponse({description: 'Turno modificado'})

@@ -11,7 +11,7 @@ export class AulasController {
 
     constructor(private aulaService: AulaService) {}
 
-    @Post('create')
+    @Post('')
     @ApiBody({type: AulaDto})
     @ApiCreatedResponse({description: 'Agregar aula'})
     @ApiOkResponse({description: "Aula creada correctamente"})
@@ -25,10 +25,10 @@ export class AulasController {
         catch (error) {
             var msg = `
             "Ha habido un problema"
-            -------------------------
-            Descripcion del problema:
-            
-            ${error}`;
+            \n-------------------------
+            \nDescripcion del problema:
+            \n
+            \n${error}`;
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
         }
     }
@@ -46,10 +46,10 @@ export class AulasController {
         catch (error) {
             var msg = `
             "Ha habido un problema"
-            -------------------------
-            Descripcion del problema:
-            
-            ${error}`;
+            \n-------------------------
+            \nDescripcion del problema:
+            \n
+            \n${error}`;
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
         }
     }
@@ -68,15 +68,15 @@ export class AulasController {
         catch (error) {
             var msg = `
             "El aula no existe"
-            -------------------------
-            Descripcion del problema:
-            
-            ${error}`;
+            \n -------------------------
+            \nDescripcion del problema:
+            \n
+            \n${error}`;
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
         }
     }
 
-    @Delete('delete/:aulaID')
+    @Delete(':aulaID')
     @ApiBody({type: AulaDto})
     @ApiParam({type: 'string', name: 'aulaID', description: "ID del aula que se quiere eliminar"})
     @ApiOkResponse({description: 'Aula eliminada'})
@@ -90,15 +90,15 @@ export class AulasController {
         catch (error) {
             var msg = `
             "El aula no existe"
-            -------------------------
-            Descripcion del problema:
-            
-            ${error}`;
+            \n-------------------------
+            \nDescripcion del problema:
+            \n
+            \n${error}`;
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
         }
     }
 
-    @Put('update/:aulaID')
+    @Put(':aulaID')
     @ApiBody({type: AulaDto})
     @ApiParam({type: 'string', name: 'aulaID', description: "ID del aula que se quiere modificar"})
     @ApiOkResponse({description: 'Aula modificado'})
@@ -112,10 +112,10 @@ export class AulasController {
         catch (error) {
             var msg = `
             "El aula no existe"
-            -------------------------
-            Descripcion del problema:
-            
-            ${error}`;
+            \n-------------------------
+            \nDescripcion del problema:
+            \n
+            \n${error}`;
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
         }
     }

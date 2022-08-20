@@ -11,7 +11,7 @@ export class AlumnosController {
 
     constructor(private alumnoService: AlumnoService) {}
 
-    @Post('create')
+    @Post('')
     @ApiBody({type: AlumnosDto})
     @ApiCreatedResponse({description: 'Agregar Alumno'})
     @ApiOkResponse({description: "Alumno creado correctamente"})
@@ -25,10 +25,10 @@ export class AlumnosController {
         catch (error) {
             var msg = `
             "Ha habido un problema"
-            -------------------------
-            Descripcion del problema:
-            
-            ${error}`;
+            \n-------------------------
+            \nDescripcion del problema:
+            \n
+            \n${error}`;
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
         }
     }
@@ -46,10 +46,10 @@ export class AlumnosController {
         catch (error) {
             var msg = `
             "Ha habido un problema"
-            -------------------------
-            Descripcion del problema:
-            
-            ${error}`;
+            \n-------------------------
+            \nDescripcion del problema:
+            \n
+            \n${error}`;
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
         }
     }
@@ -68,15 +68,15 @@ export class AlumnosController {
         catch (error) {
             var msg = `
             "El alumno no existe"
-            -------------------------
-            Descripcion del problema:
-            
-            ${error}`;
+            \n-------------------------
+            \nDescripcion del problema:
+            \n
+            \n${error}`;
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
         }
     }
 
-    @Delete('delete/:alumnoID')
+    @Delete(':alumnoID')
     @ApiBody({type: AlumnosDto})
     @ApiParam({type: 'string', name: 'alumnoID', description: "ID del alumno que se quiere eliminar"})
     @ApiOkResponse({description: 'Alumno eliminado'})
@@ -90,15 +90,15 @@ export class AlumnosController {
         catch (error) {
             var msg = `
             "El alumno no existe"
-            -------------------------
-            Descripcion del problema:
-            
-            ${error}`;
+            \n-------------------------
+            \nDescripcion del problema:
+            \n
+            \n${error}`;
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
         }
     }
 
-    @Put('update/:alumnoID')
+    @Put(':alumnoID')
     @ApiBody({type: AlumnosDto})
     @ApiParam({type: 'string', name: 'alumnoID', description: "ID del alumno que se quiere modificar"})
     @ApiOkResponse({description: 'Alumno modificado'})
@@ -112,10 +112,10 @@ export class AlumnosController {
         catch (error) {
             var msg = `
             "El alumno no existe"
-            -------------------------
-            Descripcion del problema:
-            
-            ${error}`;
+            \n-------------------------
+            \nDescripcion del problema:
+            \n
+            \n${error}`;
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
         }
     }

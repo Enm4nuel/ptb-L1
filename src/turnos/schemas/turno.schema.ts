@@ -3,10 +3,12 @@ import { Schema } from 'mongoose';
 export const TurnoSchema = new Schema ({
     docente: {
         type: String,
-        unique: true,
-        message: 'Ya hay un docente en este horario'
+        required: [true, 'Debes agregar un docente para este turno']
     },
-    codigoAula: String,
+    codigoAula: {
+        type: String,
+        required: [true, 'Debes asignarle un aula al turno']
+    },
     horario: {
         hora: {
             type: String,
@@ -14,7 +16,11 @@ export const TurnoSchema = new Schema ({
         },
         dia: {
             type: String,
-            required: [true, 'La hora es obligatoria'],
+            required: [true, 'El dia es obligatorio'],
         }
+    },
+    codigoTurno: {
+        type: Schema.Types.ObjectId,
+        default: ""
     }
 });

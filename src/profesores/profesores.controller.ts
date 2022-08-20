@@ -11,7 +11,7 @@ export class ProfesoresController {
 
     constructor(private profesoresService: ProfesoresService) {}
 
-    @Post('create')
+    @Post('')
     @ApiBody({type: ProfesorDto})
     @ApiCreatedResponse({description: 'Agregar Profesor'})
     @ApiOkResponse({description: "profesor creado correctamente"})
@@ -25,10 +25,10 @@ export class ProfesoresController {
         catch (error) {
             var msg = `
             "Ha habido un problema"
-            -------------------------
-            Descripcion del problema:
-            
-            ${error}`;
+            \n-------------------------
+            \nDescripcion del problema:
+            \n
+            \n${error}`;
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(msg);
         }
     }
@@ -76,7 +76,7 @@ export class ProfesoresController {
         }
     }
 
-    @Delete('delete/:profesorID')
+    @Delete(':profesorID')
     @ApiBody({type: ProfesorDto})
     @ApiParam({type: 'string', name: 'profesorID', description: "ID del profesor que se quiere eliminar"})
     @ApiOkResponse({description: 'Profesor eliminado'})
@@ -98,7 +98,7 @@ export class ProfesoresController {
         }
     }
 
-    @Put('update/:profesorID')
+    @Put(':profesorID')
     @ApiBody({type: ProfesorDto})
     @ApiParam({type: 'string', name: 'profesorID', description: "ID del profesor que se quiere modificar"})
     @ApiOkResponse({description: 'Profesor modificado'})
