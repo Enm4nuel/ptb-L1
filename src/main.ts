@@ -11,7 +11,9 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Politecnico')
-    .setDescription('Esta es una REST Api de un politécnico para una prueba tecnica')
+    .setDescription(
+      'Esta es una REST Api de un politécnico para una prueba tecnica',
+    )
     .setVersion('1.0')
     .build();
 
