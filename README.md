@@ -23,6 +23,13 @@ $ npm install
 $ npm run start
 ```
 
+## Importat look at this
+<p>This app build was using</p>
+<ul>
+  <li> node >= 14.15.0 </li>
+  <li> npm >= 6.11.0 </li>
+  <li> in case you use yarn >= 1.13.0" </li>
+</ul>
 
 ## Support
 
