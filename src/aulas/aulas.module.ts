@@ -5,12 +5,8 @@ import { AulaService } from './aulas.service';
 import { AulaSchema } from './schemas/aula.schema';
 
 @Module({
-    imports: [
-        MongooseModule.forFeature([
-            {name: 'Aulas', schema: AulaSchema}
-        ])
-    ],
-    controllers: [AulasController],
-    providers: [AulaService],
+  imports: [MongooseModule.forFeature([{ name: 'Aulas', schema: AulaSchema }])],
+  controllers: [AulasController],
+  providers: [AulaService],
 })
 export class AulasModule {}
